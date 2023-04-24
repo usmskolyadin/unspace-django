@@ -1,0 +1,64 @@
+{% extends 'itutopies/layout.html' %}
+{% load static %}
+{% load itopia_extras %}
+
+ {% block title %} IT - Вместе | Программирование, помощь по коду | UnSpace Q&A  {% endblock %}
+         {% block content %}
+
+        <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-xl u-container-layout-2">
+      {% for el in Itopia %}
+
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8">{{el.date}}</h3>
+               
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9"> <a href="{% url 'account' el.author.profile.slug %}">{{el.author.last_name}}<br>{{el.author.first_name}}&nbsp;</a>
+                </h3>
+                
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10">@{{el.author}}</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11"> <span style="text-decoration: underline !important;"></span>
+                  {% for tag in el.tags.all %}  
+                    <a style=" background-color:#41807c; border-radius:3px ;" href="{% url 'tagit' tag.slug %}">{{ tag.name|truncatechars:18 }} </a>
+                  {% endfor %}  
+                </h3>
+                <a href="{% url 'account' el.author.profile.slug %}">
+                <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" alt="" src="{{el.author.profile.avatar.url}}" data-image-width="900" data-image-height="900">
+              </a>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12">{{el.title}}</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-13">{{el.full_text|convert_markdown|safe}}</h3>
+                <br>
+                <div class="u-accordion u-align-left u-collapsed-by-default u-expanded-width-xs u-spacing-2 u-accordion-1">
+                  <div class="u-accordion-item">
+                    <a class="u-accordion-link u-border-1 u-border-active-palette-4-light-1 u-border-hover-palette-4-dark-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-button-style u-custom-font u-font-montserrat u-radius-13 u-text-active-white u-text-body-alt-color u-text-hover-palette-4-base u-accordion-link-1" id="link-accordion-7c0e" aria-controls="accordion-7c0e" aria-selected="false">
+                      <span class="u-accordion-link-text">Смотреть код</span><span class="u-accordion-link-icon u-icon u-text-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efea"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-efea" style="enable-background:new 0 0 512 512;"><g><g><path d="M509.121,125.966c-3.838-3.838-10.055-3.838-13.893,0L256.005,365.194L16.771,125.966c-3.838-3.838-10.055-3.838-13.893,0    c-3.838,3.838-3.838,10.055,0,13.893l246.18,246.175c1.842,1.842,4.337,2.878,6.947,2.878c2.61,0,5.104-1.036,6.946-2.878    l246.17-246.175C512.959,136.021,512.959,129.804,509.121,125.966z"></path>
+                    </g>
+                    </g></svg></span>
+                    </a>
+                    <div class="u-accordion-pane u-align-left u-container-style u-grey-90 u-opacity u-opacity-70 u-accordion-pane-1" id="accordion-7c0e" aria-labelledby="link-accordion-7c0e">
+                      <div class="u-container-layout u-container-layout-4">
+                        <ol class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-14">
+                          <li>
+                            <br>
+                          </li>
+                          <li>{{el.code}}</li>
+                          <li>
+                            <br>
+                          </li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div> 
+                <a href="{{ el.get_absolute_url }}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Зайти</a>
+                <br>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-15">Проект: {{el.project}}</h3>
+              </div>
+
+            </div><br>
+            {% endfor %}
+
+          </div>
+        </div>
+        {% endblock %}
+       

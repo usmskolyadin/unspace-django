@@ -1,0 +1,113 @@
+  {% extends 'utopies/layout.html' %}
+{% load static %}  
+          {% block title %} {{Utopia.title}} - UnSpace {% endblock %}
+{% load itopia_extras %}
+
+      {% block utopies %}
+
+        <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-top-xs u-container-layout-2">
+            <div style="color: #fff" class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-6">{{ Utopia.date }}</h3>
+               
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-7"> <a href="{% url 'account' Utopia.author.profile.slug  %}">{{Utopia.author.first_name}}<br>{{Utopia.author.last_name}}&nbsp;                </a>
+
+                </h3>
+
+               <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8"> <a href="{% url 'user-utopies' object.author.username %}">@{{ Utopia.author.username }}</a></h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9">         
+                {% for tag in Utopia.tags.all %}  
+                <a href="{% url 'tagutopies' tag.slug %}"> {{ tag.name }}  <span style="text-decoration: underline !important;"></span></a>
+                   {% endfor %}                                                                                                                                                                                                                                
+                </h3>
+
+                <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" src="{{Utopia.author.profile.avatar.url}}" alt="" data-image-width="900" data-image-height="900">
+
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10">{{ Utopia.title }}</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">{{ Utopia.full_text|convert_markdown|safe }}</h3>
+
+                <form action="{% url 'utopialike' Utopia.pk %}" method="POST">
+                    {% csrf_token %}
+                {% if user.is_authenticated %}
+                    {% if liked %}
+                <span class="u-hover-feature u-icon u-icon-1" title="{{total_likes}}" name="utopia_id" value="{{Utopia.id}}" type="submit" data-href="{% url 'utopialike'   Utopia.pk  %}">
+            <button name="utopia_id" class="btn btn-link" value="{{Utopia.id}}" type="submit">
+                        <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg></button></span>
+
+                                          {% else %}
+            <span title="{{total_likes}}" class="u-hover-feature u-icon u-icon-1" name="utopia_id" value="{{Utopia.id}}" type="submit" data-href="{% url 'utopialike'   Utopia.pk   %}">
+            <button name="utopia_id" class="btn btn-link" value="{{Utopia.id}}" type="submit">
+            <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+            </svg></button></span>
+
+
+
+
+                    {% endif %}
+                {% else %}
+            <span title="{{total_likes}}" class="u-hover-feature u-icon u-icon-1" name="utopia_id" value="{{Utopia.id}}" type="submit" data-href="{% url 'register' %}">
+            <button name="utopia_id" class="btn btn-link" value="{{Utopia.id}}" type="submit">
+            <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+            </svg></button></span>
+
+                {% endif %}
+                
+                </form>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12"><a href='/dev/searchstar?s={{Utopia.project}}'>{{Utopia.project}}</a></h3>
+                
+                {% if object.author == user %}
+                <br>
+                 <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">
+                <a href="{% url 'update' object.id %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1">Редактировать</a>            
+             
+
+                <a href="{% url 'delete' object.id %}" class="tenpx u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1">Удалить</a>
+                </h3>
+                    {% endif %}
+              </div>
+            
+            </div>
+           <h3  class="align-center u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10">Обсуждение утопии</h3>
+           <br>
+
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">
+                <a href="{% url 'comment' Utopia.slug %}" style="margin-top: 3px" class="comment-btn u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1">Комментировать</a>            
+             
+                </h3>
+            
+                         <br>
+            {% for comment in Utopia.comments.all %}
+            <div class="comments blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="comments u-container-layout u-container-layout-3">
+                <h3 class="commentdate u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-6">{{ comment.date }}</h3>
+                
+                <h3 class="commentnames u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-7"><a href="{% url 'account' comment.author.username %}">{{comment.author.first_name}}<br>{{comment.author.last_name}}&nbsp;</a>
+                </h3>
+                
+                <h3 class="commentusername u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8"><a href="{% url 'user-utopies' comment.author.username %}">@{{ comment.author.username }}</a></h3>
+                <h3 class="commenttags u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9">         
+                <a href=""><span style="text-decoration: underline !important;"></span></a>
+                </h3>
+                <img class="commentimage u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" src="{{comment.author.profile.avatar.url}}" alt="" data-image-width="900" data-image-height="900">
+                <h3 class="commentfull u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">{{comment.comment|convert_markdown|safe}}</h3>
+                {% if comment.author == user %}
+                <br>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">
+                <a href="{% url 'updatecomment' comment.pk %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1">Редактировать</a>                
+                <a href="{% url 'deletecomment' comment.pk %}" class="tenpx u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1">Удалить</a>
+                </h3>
+                    {% endif %}
+              </div>
+            </div>
+            <br>
+          {% endfor %}
+          </div>
+        </div>
+
+    {% endblock utopies %}

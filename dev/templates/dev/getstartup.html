@@ -1,0 +1,51 @@
+{% extends 'dev/layout.html' %}
+
+{% load static %}
+{% block title %}Проект {{Startup.title}} | UnSpace Dev - Проекты {% endblock %}
+        {% block content %}
+        <h1 class="u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">Информация о проекте</h1>
+        <div class="u-container-style u-expanded-width u-group u-hover-feature u-radius-25 u-shape-round u-group-2">
+          <div class="u-container-layout u-container-layout-2">
+            <h1 class="u-align-center-md u-align-center-sm u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-2">{{Startup.discription}}</h1>
+            <div class="u-container-align-center-xs u-container-style u-group u-hover-feature u-radius-25 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h1 class="u-align-center u-custom-font u-font-montserrat u-hidden-md u-hidden-sm u-hidden-xs u-text u-text-body-alt-color u-text-3">Информация</h1>
+                <h1 class="u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-4"><span class="u-file-icon u-icon u-text-white u-icon-3"><img src="{% static 'dev/img/3210055-784703c3.png' %}" alt=""><a target="_blank"  href="{{Startup.site}}"></span>&nbsp;{{Startup.site}}</a>
+                </h1>
+                <h1 class="u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-5"><span class="u-file-icon u-icon u-text-white u-icon-4"><img src="{% static 'dev/img/733609-85094c5b.png' %}" alt=""></span>&nbsp;<a target="_blank" href="{{Startup.git}}">{{Startup.git}}</a>
+                </h1>
+              </div>
+            </div>
+            <h1 class="u-align-center-md u-align-center-sm u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-6">{{Startup.title}}&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-palette-4-dark-1">{% if Startup.verify == True %}<img src="{% static 'dev/img/1271380-3a694a88.png' %}" alt=""></span>{% endif %}
+            </h1>
+            <h1 class="u-align-center-md u-align-center-sm u-align-center-xs u-custom-font u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-7">{{Startup.founder.username}}&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-white u-icon-6"><img src="{% static 'dev/img/3071722-666f733c.png' %}" alt=""></span>
+            </h1>
+            <img class="u-hover-feature u-image u-image-circle u-image-contain u-image-1" src="{{Startup.image.url}}" alt="UnSpace" data-image-width="958" data-image-height="955">
+          </div>
+        </div>
+        {% if Startup.founder == request.user %}
+              <div class="u-container-style u-expanded-width u-group u-hover-feature u-radius-25 u-shape-round u-group-4">
+          <div class="u-container-layout u-container-layout-4">
+            <img class="u-image u-image-circle u-image-contain u-image-2" src="{{Startup.image.url}}" alt="" data-image-width="958" data-image-height="955">
+            <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8"><a href="">О продвижении</a>&nbsp;&nbsp;
+            </h1>
+            <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-default u-text-9">{{Startup.title}} <span class="u-file-icon u-icon u-text-palette-4-dark-1">{% if Startup.verify == True %}<img src="{% static 'dev/img/1271380-3a694a88.png' %}" alt=""></span>{% endif %}</h1>
+            <a href="{% url 'startupupdate' Startup.pk %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-3">Редактировать</a>
+            <a href="" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-4">Продвигать</a>
+           
+          </div>
+        </div>
+        {% endif %}
+        <h1 class="u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">Команда проекта</h1>
+         <div class="u-container-style u-expanded-width u-group u-hover-feature u-radius-25 u-shape-round u-group-4">
+          <div class="u-container-layout u-container-layout-4">
+            <img class="u-image u-image-circle u-image-contain u-image-2" src="{{Startup.team.image.url}}" alt="" data-image-width="958" data-image-height="955">
+            <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-default u-text-8"><a href="{% url 'team' Startup.team.pk %}">{{Startup.team.title}} </a><span class="u-file-icon u-icon u-text-palette-4-dark-1">{% if Startup.team.verify == True %}<img src="{% static 'dev/img/1271380-3a694a88.png' %}" alt=""></span>&nbsp;&nbsp;{% endif %}
+            </h1>
+            <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-default u-text-9">Участников: {{Startup.team.total_participants}} </h1>
+            <a href="{% url 'team' Startup.team.pk %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-3">Посетить</a>
+            <a href="{% url 'utopiaform' %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-4">Продвигать</a>
+           
+          </div>
+        </div>
+      {% endblock content %}

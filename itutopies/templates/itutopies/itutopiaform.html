@@ -1,0 +1,21 @@
+{% extends 'itutopies/layout.html' %}
+{% load static %}
+  {% block title %} Задать вопрос на Айтопии | UnSpace Q&A  {% endblock %}
+    {% block content %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-xl u-container-layout-2">
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                 <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-13">Используйте <a href="http://unrealspace.ru/itutopies/itopia/2-markdown"><b>markdown</b></a></h3>
+                 <form style="margin-left: 15px; margin-top: 20px; margin-right: 15px; color: #fff; font-family: 'montserrat' ;" method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}<br>
+                   <button type="submit" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Опубликовать</button>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+       {% endblock %}

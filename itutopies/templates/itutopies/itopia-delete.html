@@ -1,0 +1,29 @@
+{% extends 'itutopies/layout.html' %}
+{% load static %}
+{% block title %}Удалить айтопию | UnSpace Q&A {% endblock %}
+{% block content %}
+        <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-xl u-container-layout-2">
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12">{{Itopia.title}}</h3>
+                <br>
+                <div class="u-accordion u-align-left u-collapsed-by-default u-expanded-width-xs u-spacing-2 u-accordion-1">
+                  <div class="u-accordion-item">
+                    <div class="u-accordion-pane u-align-left u-container-style u-grey-90 u-opacity u-opacity-70 u-accordion-pane-1" id="accordion-7c0e" aria-labelledby="link-accordion-7c0e">
+                    </div>
+                  </div>
+                </div>
+                {% if object.author == user %}
+                  <form method="POST">
+                  {% csrf_token %}
+                    <div align="center">
+                <button type="submit" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Да, я хочу удалить эту айтопию</button>
+                </form>
+              </div>
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endblock %}

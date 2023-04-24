@@ -1,0 +1,56 @@
+{% extends 'regauth/proflayout.html' %}
+{% load static %}
+{% block title %}Обновление профиля{% endblock %}
+{% block content %}
+       <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">{{user.first_name}}&nbsp;<br>{{user.last_name}}&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-palette-4-dark-1">{% if user.profile.verify == True %}<img src="{% static 'regauth/img/1271380-3a694a88.png' %}" alt=""></span>{% endif %}
+        </h1>
+        <h1 class="u-custom-font u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-2">@{{user.username}}<span class="u-file-icon u-icon u-text-white u-icon-4"><img src="{% static 'regauth/img/709722-8050f29d.png' %}" alt=""></span>
+        </h1>
+        <div class="u-container-style u-expanded-width u-group u-hover-feature u-radius-25 u-shape-round u-group-2">
+          <div class="u-container-layout u-container-layout-2">
+            <div class="u-container-style u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-radius-25 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-3"><span class="u-file-icon u-icon u-text-white u-icon-5"><img src="{% static 'regauth/img/3210055-784703c3.png' %}" alt=""></span>&nbsp; {{user.profile.contact}}
+                </h1>
+                         <img class="u-image u-image-circle u-image-contain u-image-1" src="{% static 'regauth/img/2111646-7e3fdcc4.png' %}" alt="" data-image-width="958" data-image-height="955" data-href="">
+                <img class="u-image u-image-circle u-image-contain u-image-2" src="{% static 'regauth/img/733609-85094c5b.png' %}" alt="" data-image-width="958" data-image-height="955" data-href="">
+                <img class="u-image u-image-circle u-image-contain u-image-3" src="{% static 'regauth/img/3670055-f442ec44.png' %}" alt="" data-image-width="958" data-image-height="955" data-href="">
+              </div>
+            </div>
+            <a href="{% url 'logout' %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-3">Выйти</a>
+            <a href="{% url 'editprofile' %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-4">Редактировать</a>
+            <h1 class="u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-4">{{user.profile.bio}}</h1>
+           {% if user.profile.tags.all == True %}
+            <h1 class="u-custom-font u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-5"> {% for tag in user.profile.tags.all %}  
+                     <a style=" background-color:#41807c; border-radius:3px ;" href="{% url 'profiletag' tag.slug %}">{{ tag.name|safe }} </a>
+                   {% endfor %} </h1>
+            {% else %}
+             <h1 class="u-custom-font u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-5">
+                     без тегов
+                </h1>
+            {% endif %}
+
+            <h1 class="u-align-right-sm u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-6">с {{user.profile.date_registered}}</h1>
+          </div>
+        </div>
+        <img class="u-hover-feature u-image u-image-circle u-image-contain u-image-4" src="{{user.profile.avatar.url}}" alt="UnSpace" data-image-width="958" data-image-height="955">
+        <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-7"><span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-6"><img src="{% static 'regauth/img/3211424-5e187350.png' %}" alt=""></span>&nbsp;репутация: {{user.profile.total_raiting}}
+        </h1>
+      </div>   
+    </section>
+    <section class="u-align-center u-clearfix u-gradient u-section-2" id="sec-c764">
+      <div class="u-clearfix u-sheet u-sheet-1">
+                <form method="POST" style="margin-left: 15px; margin-top: 55px; margin-right: 15px; color: #fff; font-family: 'montserrat' ;" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{User_Form.as_p}}
+                {{Profile_Form.as_p}}
+         <button type="submit" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-10">Обновить профиль</button>
+
+              </form>        
+       
+        </div>
+      
+      
+  {% endblock %}
+
+

@@ -1,0 +1,79 @@
+{% extends 'dev/teamlayout.html' %}
+{% load static %}
+{% block title %}{{team.title}} | UnSpace Dev - Teams{% endblock %}
+{% block content %}
+        <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">{{team.title}}&nbsp;&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-palette-4-dark-1">{% if team.verify == True %}<img src="images/1271380-3a694a88.png" alt=""></span>{% endif %}
+        </h1>
+        <h1 class="u-custom-font u-custom-item u-font-montserrat u-text u-text-body-alt-color u-text-2"><span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-4" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="{% static 'dev/img/3071722-993fce68.png' %}" alt=""></span>&nbsp;{{team.total_participants}} участника
+        </h1>
+        <div class="u-container-style u-expanded-width u-group u-hover-feature u-radius-25 u-shape-round u-group-2">
+          <div class="u-container-layout u-container-layout-2">
+            <div class="u-container-style u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-radius-25 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-3"><span class="u-file-icon u-icon u-text-white u-icon-5"><img src="{% static 'dev/img/3210055-784703c3.png' %}" alt=""></span>&nbsp;  
+                </h1>
+                <img class="u-image u-image-circle u-image-contain u-image-1" src="images/unspaceicon.png" alt="" data-image-width="958" data-image-height="955" data-href="">
+                <img class="u-image u-image-circle u-image-contain u-image-2" src="images/unspaceicon.png" alt="" data-image-width="958" data-image-height="955" data-href="">
+                <img class="u-image u-image-circle u-image-contain u-image-3" src="images/unspaceicon.png" alt="" data-image-width="958" data-image-height="955" data-href="">
+              </div>
+            </div>
+            <a href=" " class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-3">Написать</a>
+            <a href="{% url 'teamupdate' team.pk %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-4">Редактировать</a>
+            <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-4">{{team.discription}}</h1>
+            <h1 class="u-custom-font u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-5">{{team.date}}</h1>
+          </div>
+        </div>
+        <img class="u-hover-feature u-image u-image-circle u-image-contain u-image-4" src="{{team.image.url}}" alt="UnSpace" data-image-width="958" data-image-height="955">
+        <a href="{% url 'startupcreate' team.pk %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-5">Пригласить в команду</a>
+        <div class="u-expanded-width-sm u-expanded-width-xs u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+                  {% for teams in participants   %}
+
+            <div class="u-container-style u-hover-feature u-list-item u-radius-25 u-repeater-item u-shape-round u-list-item-1" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+              <div class="u-container-layout u-similar-container u-container-layout-4">
+                <img class="u-image u-image-circle u-image-contain u-image-5" src="{{teams.profile.avatar.url}}" alt="" data-image-width="958" data-image-height="955">
+                <h1 class="u-custom-font u-custom-item u-font-montserrat u-text u-text-body-alt-color u-text-default u-text-6"><a href="{% url 'account' teams.profile.slug %}">{{teams.last_name}} {{teams.first_name|truncatechars:3}}</a>&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-6" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="images/1271380-3a694a88.png" alt=""></span>
+                </h1>
+                <h1 class="u-custom-font u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-7">@{{teams.username}}&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-white u-icon-7" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="{% static 'dev/img/3211424-5e187350.png' %}" alt=""></span>
+                </h1>
+                <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8"><span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-8" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="{% static 'regauth/img/3211424-5e187350.png' %}" alt=""></span>&nbsp;репутация: {{teams.profile.total_raiting}}
+                </h1>
+                <h1 class="u-custom-font u-custom-item u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-9"><span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-9" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="images/2739921-180d9142.png" alt=""></span>&nbsp;{% for tag in teams.profile.tags.all %}  
+                     <a style=" background-color:#41807c; border-radius:3px ;" href="{% url 'profiletag' tag.slug %}">{{ tag.name }} </a>           {% endfor %}
+
+                 </h1>
+              </div>
+            </div>
+           {% endfor %}
+          </div>
+        </div>
+                <a href="{% url 'startupcreate' team.pk %}" class="u-border-2 u-border-active-palette-4-dark-1 u-border-hover-palette-4-dark-1 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-6 u-text-active-white u-text-hover-palette-4-light-3 u-text-palette-4-dark-1 u-btn-5">Добавить стартап</a>
+
+         <div class="u-expanded-width-sm u-expanded-width-xs u-list u-list-1">
+          <div class="u-repeater u-repeater-1">
+      
+                   {% for s in startups   %}
+
+            <div class="u-container-style u-hover-feature u-list-item u-radius-25 u-repeater-item u-shape-round u-list-item-1" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction="">
+              <div class="u-container-layout u-similar-container u-container-layout-4">
+                <img class="u-image u-image-circle u-image-contain u-image-5" src="{{s.image.url}}" alt="" data-image-width="958" data-image-height="955">
+                <h1 class="u-custom-font u-custom-item u-font-montserrat u-text u-text-body-alt-color u-text-default u-text-6"><a href="{{s.get_absolute_url}}">{{s.title}}</a>&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-6" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="images/1271380-3a694a88.png" alt=""></span>
+                </h1>
+                <h1 class="u-custom-font u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-7"><a href="{% url 'team' s.team.pk %}">@{{s.team.title}}</a>&nbsp;&nbsp;<span class="u-file-icon u-icon u-text-white u-icon-7" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="images/709722-8050f29d.png" alt=""></span>
+                </h1>
+                <h1 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8"><span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-8" data-animation-name="" data-animation-duration="0" data-animation-delay="0" data-animation-direction=""><img src="{% static 'dev/img/3071722-993fce68.png' %}" alt=""></span>&nbsp; {{s.team.total_participants}} разработчикa
+                </h1>
+                <h1 class="u-custom-font u-custom-item u-font-montserrat u-hover-feature u-text u-text-body-alt-color u-text-9"><span class="u-file-icon u-icon u-text-palette-4-dark-1 u-icon-9"><img src="images/2739921-180d9142.png" alt=""></span>&nbsp;{{s.discription|truncatechars:25}}
+                </h1>
+              </div>
+            </div>
+                   {% endfor %}
+
+          </div>
+        </div>
+      </div>
+{% endblock content %}
+      
+      
+      
+      

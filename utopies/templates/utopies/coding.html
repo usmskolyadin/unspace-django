@@ -1,0 +1,35 @@
+ {% extends 'utopies/layout.html' %}
+{% load static %}   
+          {% block title %} Программирование и IT - будущее | UnrealSpace {% endblock %}
+
+      {% block utopies %}
+       <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-top-xs u-container-layout-2">
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-6">Опубликовано 2022.03.26</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-7"><a href="../utopies/mskolyadin/utopies">UnSpace<br>News&nbsp;</a>
+                </h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8">@<a href="../regauth/profile/mskolyadin">mskolyadin</a></h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9">
+                  <a href="../../search/?q=программирование">программирование</a>
+                </h3>
+                <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" alt="" src="{% static 'utopies/img/unspaceicon.png' %}" data-image-width="900" data-image-height="900">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10">Программирование и IT - будущее</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">21 век - 23 год, время когда цифровые технологии на самом пике, и изучать сферу IT одно из самых перспективных решений. Не стоит бояться нашествия <a href="{% url 'neirone' %}"><b>нейронных сетей</b></a> в последнее время, они только увеличат порог вхождения для новичков, это будет поводом для самосовершенствования. <br><br>Этот сайт почти целиком посвящен IT, вы можете задавать вопросы, искать решение ошибок встречаемых по мере обучения и создания своих проектов и после их завершения можно будет рассказать о нем в утопиях и выложить во вкладку стартапы, это даст вам хороший буст для достижения целей.<br> Поскольку ваш проект и ваш аккаунт будет просматриваться, вас смогут найти люди в теме с которыми вы сможете сотрудничать и вместе разрабатывать свои проекты, а возможно ваш проект найдут даже инвесторы. Сообщество талантливых программистов, <a href="{% url 'marketing' %}"><b>маркетологов</b></a>, <a href="{% url 'design' %}"><b>дизайнеров</b></a>, <b>музыкантов</b>, предпринимателей и людей в теме - unrealspace
+                     <br><br>
+                Для темы программирования создана отдельная вкладка<a href="{% url 'itutopies' %}"> <b>ITопии</b></a>. Если хотите написать ITопию (Задать вопрос или рассказать про какую либо IT тему, фреймворк, язык и т.п.) то написать ее можно по <b><a href="{% url 'itutopiaform' %}">этой ссылке<b></a>, через кнопку в <a href="{% url 'profile' %}"><b>профиле</b></a> и на главной странице <a href="{% url 'itutopies' %}"> <b>ITопий</b></a>
+                </h3><span class="u-icon u-text-palette-2-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-30d7"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-30d7" style="enable-background:new 0 0 51.997 51.997;"><g><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+                  c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+                  c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+                  C52.216,18.553,51.97,16.611,51.911,16.242z M49.521,21.261c-0.984,4.172-3.265,7.973-6.59,10.985L25.855,47.481L9.072,32.25
+                  c-3.331-3.018-5.611-6.818-6.596-10.99c-0.708-2.997-0.417-4.69-0.416-4.701l0.015-0.101C2.725,9.139,7.806,3.826,14.158,3.826
+                  c4.687,0,8.813,2.88,10.771,7.515l0.921,2.183l0.921-2.183c1.927-4.564,6.271-7.514,11.069-7.514
+                          c6.351,0,11.433,5.313,12.096,12.727C49.938,16.57,50.229,18.264,49.521,21.261z"></path>
+                  </g></svg></span>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12">Проект: unspaceit</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endblock utopies %}

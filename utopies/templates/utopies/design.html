@@ -1,0 +1,35 @@
+{% extends 'utopies/layout.html' %}
+{% load static %}    
+          {% block title %} Дизайн | UnrealSpace {% endblock %}
+
+      {% block utopies %}
+       <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-top-xs u-container-layout-2">
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-6">Опубликовано 2022.03.26</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-7"><a href="../utopies/mskolyadin/utopies">UnSpace<br>News&nbsp;</a>
+                </h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8">@<a href="../regauth/profile/mskolyadin">mskolyadin</a></h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9">
+                <a href="../../search/?q=дизайн">дизайн</a>
+                </h3>
+                <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" alt="" src="{% static 'utopies/img/unspaceicon.png' %}" data-image-width="900" data-image-height="900">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10">Дизайн</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">Судят все таки по обложке, поэтому дизайнеры достаточно востребованная профессия, но сейчас мы будем говорить больше о веб-дизайнерах и об их значимости в IT, сайт больше специализирован на этом. Ну а если вы не веб-дизайнер то покидать сайт не стоит, ведь в каждом профиле есть функция добавления медиа, эти работы будут иметь свое место в <b><a href="{% url 'unews' %}">ленте</a></b> и <b><a href="{% url 'profile' %}">вашем профиле</a></b>, любая ваша публикация на сайте будет активно продвижена, естественно, если вы активничайте и она соответствует <b><a href="{% url 'user-agreement' %}">правилам публикации</a></b>. Любой человек может захотеть чтобы вы сделали ему работу наподобие вашей, но меркантильные цели должны быть не на первом месте. В первую очередь стоит добавить аватарку, описание, теги в свой профиль, затем заполнить его работами, если речь идет о дизайне то<br> <a href="{% url 'imagesform' %}">Профиль --> Фото --> Загрузить фото. </a>
+                  <br><br>
+                Утопии по этой теме вы можете найти в <a href="{% url 'unews' %}"><b>поиске</b></a>, или же <a href="{% url 'utopiaform' %}"><b>напишите про нее сами!</b></a>
+                </h3><span class="u-icon u-text-palette-2-base u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 51.997 51.997" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-30d7"></use></svg><svg class="u-svg-content" viewBox="0 0 51.997 51.997" x="0px" y="0px" id="svg-30d7" style="enable-background:new 0 0 51.997 51.997;"><g><path d="M51.911,16.242C51.152,7.888,45.239,1.827,37.839,1.827c-4.93,0-9.444,2.653-11.984,6.905
+            c-2.517-4.307-6.846-6.906-11.697-6.906c-7.399,0-13.313,6.061-14.071,14.415c-0.06,0.369-0.306,2.311,0.442,5.478
+            c1.078,4.568,3.568,8.723,7.199,12.013l18.115,16.439l18.426-16.438c3.631-3.291,6.121-7.445,7.199-12.014
+            C52.216,18.553,51.97,16.611,51.911,16.242z M49.521,21.261c-0.984,4.172-3.265,7.973-6.59,10.985L25.855,47.481L9.072,32.25
+            c-3.331-3.018-5.611-6.818-6.596-10.99c-0.708-2.997-0.417-4.69-0.416-4.701l0.015-0.101C2.725,9.139,7.806,3.826,14.158,3.826
+            c4.687,0,8.813,2.88,10.771,7.515l0.921,2.183l0.921-2.183c1.927-4.564,6.271-7.514,11.069-7.514
+                    c6.351,0,11.433,5.313,12.096,12.727C49.938,16.57,50.229,18.264,49.521,21.261z"></path>
+                  </g></svg></span>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12">Проект: unspaceit</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endblock utopies %}

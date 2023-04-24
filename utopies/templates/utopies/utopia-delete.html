@@ -1,0 +1,21 @@
+    {% extends 'utopies/layout.html' %}
+    {% block title %} Подтверждение удаления | Утопии | UnrealSpace {% endblock %}
+      {% block utopies %}
+        <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-top-xs u-container-layout-2">
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                  {% if object.author == user %}
+                  <form method="POST">
+                  {% csrf_token %}
+                    <div align="center">
+                <button type="submit" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1">Да, я хочу удалить.</button>
+                </form>
+              </div>
+              {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+    {% endblock utopies %}

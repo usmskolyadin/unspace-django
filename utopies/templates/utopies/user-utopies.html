@@ -1,0 +1,62 @@
+    {% extends 'utopies/layout.html' %}
+        {% block title %}Утопии пользователя{% endblock %}
+{% load itopia_extras %}
+
+      {% block utopies %}
+        <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-top-xs u-container-layout-2">
+           {% for el in Utopia %}
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-6">{{el.date}}</h3>
+                
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-7"><a href="{% url 'account' el.author.profile.slug %}">{{el.author.last_name}}<br>{{el.author.first_name}}&nbsp;         </a>
+                </h3>
+       
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8">@{{el.author}}</h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9">{% for tag in el.tags.all %}
+                <a href="{% url 'tagutopies' tag.slug %}"> {{ tag.name }}  <span style="text-decoration: underline !important;"></span></a>
+                  {% endfor %}<span style="text-decoration: underline !important;"></span>
+                </h3>
+                <a href="{% url 'account' el.author.profile.slug %}">
+                <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" alt="" src="{{el.author.profile.avatar.url}}" data-image-width="900" data-image-height="900">
+                </a>
+                
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10"><a href="{{ el.get_absolute_url }}">{{el.title}}</a></h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11"><a href="{{ el.get_absolute_url }}">{{el.full_text|convert_markdown|safe}}</a></h3>
+                          
+           {% if liked %}
+                <span class="u-hover-feature u-icon u-icon-1" name="utopia_id" value="{{el.id}}" type="submit">
+            <button name="utopia_id" class="btn btn-link" value="{{el.id}}" type="submit">
+                        <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg></button></span>
+
+                                          {% else %}
+            <span class="u-hover-feature u-icon u-icon-1" name="utopia_id" value="{{el.id}}" type="submit">
+            <button name="utopia_id" class="btn btn-link" value="{{el.id}}" type="submit">
+            <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+            </svg></button></span>
+
+
+
+
+                    {% endif %}
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12"><a href='/dev/searchstar?s={{el.project}}'>{{el.project}}</a></h3>
+           <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11">Смотреть <b><a href="{% url 'user-itutopies' el.author.username %}">ITопии</a></b> пользователя</h3>
+
+              </div>
+            </div>
+        <br>
+  
+            {% endfor %} 
+  
+                <a href="{% url 'utopies' %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1"><< Вернуться</a>
+                
+                <br>
+ 
+          </div>
+        </div>
+ 
+    {% endblock utopies %}

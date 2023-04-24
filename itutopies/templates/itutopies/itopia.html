@@ -1,0 +1,120 @@
+{% extends 'itutopies/layout.html' %}
+{% load static %}
+{% load itopia_extras %}
+
+{% block title %}{{Itopia.title}}  | UnSpace Q&A  {% endblock %}
+{% block content %}
+        <div class="blur10px filter u-container-style u-expanded-width-lg u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+          <div class="u-container-layout u-valign-middle-lg u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-valign-top-xl u-container-layout-2">
+
+            <div style="color: #fff" class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8">{{Itopia.date}}</h3>
+                <a href="{% url 'account' Itopia.author.profile.slug %}">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9">{{Itopia.author.last_name}}<br>{{Itopia.author.first_name}}&nbsp;
+                </a>
+                </h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10"><a href="{% url 'user-itutopies' object.author.username %}">@{{Itopia.author.username}}</h3></a>
+                <h3 style="width: 300px; " class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11"> 
+                  {% for tag in Itopia.tags.all %}   <span style="text-decoration: underline !important;"></span>
+                    <a style=" background-color:#41807c; border-radius:3px ;" href="{% url 'tagit' tag.slug %}">{{ tag.name|truncatechars:18 }} </a>
+                  {% endfor %}  
+                </h3>
+                <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" alt="" src="{{Itopia.author.profile.avatar.url}}" data-image-width="900" data-image-height="900">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12">{{Itopia.title}}</h3>
+
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-13"><p>{{Itopia.full_text|convert_markdown|safe}}</p></h3>
+                <br>
+                <div class="u-accordion u-align-left u-collapsed-by-default u-expanded-width-xs u-spacing-2 u-accordion-1">
+                  <div class="u-accordion-item">
+                    <a class="u-accordion-link u-border-1 u-border-active-palette-4-light-1 u-border-hover-palette-4-dark-2 u-border-no-left u-border-no-right u-border-no-top u-border-white u-button-style u-custom-font u-font-montserrat u-radius-13 u-text-active-white u-text-body-alt-color u-text-hover-palette-4-base u-accordion-link-1" id="link-accordion-7c0e" aria-controls="accordion-7c0e" aria-selected="false">
+                      <span class="u-accordion-link-text">Смотреть код</span><span class="u-accordion-link-icon u-icon u-text-white u-icon-1"><svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 512 512" style=""><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-efea"></use></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" xml:space="preserve" class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-efea" style="enable-background:new 0 0 512 512;"><g><g><path d="M509.121,125.966c-3.838-3.838-10.055-3.838-13.893,0L256.005,365.194L16.771,125.966c-3.838-3.838-10.055-3.838-13.893,0    c-3.838,3.838-3.838,10.055,0,13.893l246.18,246.175c1.842,1.842,4.337,2.878,6.947,2.878c2.61,0,5.104-1.036,6.946-2.878    l246.17-246.175C512.959,136.021,512.959,129.804,509.121,125.966z"></path>
+                    </g>
+                    </g></svg></span>
+                    </a>
+                     <form action="{% url 'itopialike' Itopia.pk %}" method="POST">
+                    {% csrf_token %}
+                {% if user.is_authenticated %}
+                    {% if liked %}
+                   <span class="u-hover-feature u-icon u-icon-1" style="margin-left: 74%; margin-top: 1%" title="{{total_likes}}" name="itopia_id" value="{{Itopia.id}}" type="submit">
+                   <button name="itopia_id" class="btn btn-link" value="{{Itopia.id}}" type="submit">
+                        <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                        </svg></button></span>
+                      {% else %}
+            <span style="margin-left: 74%; margin-top: 1%" title="{{total_likes}}" class="u-hover-feature u-icon u-icon-1" name="itopia_id" value="{{Itopia.id}}" type="submit">
+
+            <button name="itopia_id" class="btn btn-link" value="{{Itopia.id}}" type="submit">
+            <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+            </svg></button></span>
+
+
+
+
+
+
+                    {% endif %}
+                {% else %}
+            <span style="margin-left: 74%; margin-top: 1%" title="{{total_likes}}" class="u-hover-feature u-icon u-icon-1" name="itopia_id" value="{{Itopia.id}}" type="submit" data-href="{% url 'register' %}">
+            <button name="itopia_id" class="btn btn-link" value="{{Itopia.id}}" type="submit">
+            <svg color="#2cccc4" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+            </svg></button></span>
+
+                {% endif %}
+                
+                </form>
+                    <div class="u-accordion-pane u-align-left u-container-style u-grey-90 u-opacity u-opacity-70 u-accordion-pane-1" id="accordion-7c0e" aria-labelledby="link-accordion-7c0e">
+                      <div class="u-container-layout u-container-layout-4">
+                        <div class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-14 editor language-js">
+                          {{Itopia.code|convert_markdown|safe}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+             
+                                <br>
+                                <br>
+
+              <h3 style="width: 300px" class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-15">{{Itopia.project}}</h3>                   
+                 {% if object.author == user %}
+               <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-13">
+                <a href="{% url 'updateit' object.id %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Изменить</a>
+                <a href="{% url 'deleteit' object.id %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Удалить</a>
+              </h3>
+                {% endif %}
+               
+             </div>
+            </div>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-12">Обсуждение ITопии, ответ каждого из вас полезен!</h3>
+                  <a href="{% url 'itcomment' Itopia.slug %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Написать</a>
+
+            {% for comment in Itopia.comments.all %}
+            <br>
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-3">
+              <div class="u-container-layout u-container-layout-3">
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-8">{{comment.date}}</h3>
+                
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-9"><a href="{% url 'account' comment.author.username %}">{{comment.author.last_name}}<br>{{comment.author.first_name}}&nbsp;</a>
+                </h3>
+                <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-10"><a href="{% url 'user-itutopies' comment.author.username %}">@{{comment.author.username}}</h3></a>
+                <h3 style="width: 300px;" class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-11"> 
+                  Комментарий
+                </h3>
+                <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" alt="" src="{{comment.author.profile.avatar.url}}" data-image-width="900" data-image-height="900">
+                   <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-13">{{comment.comment|convert_markdown|safe}}</h3>
+           
+                   {% if comment.author == user %}
+                 <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-13">
+                  <a href="{% url 'updateitcomment' comment.pk %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Изменить</a>
+                  <a href="{% url 'deleteitcomment' comment.pk %}" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-11">Удалить</a>
+                </h3>
+                  {% endif %}
+             </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+    {% endblock %}

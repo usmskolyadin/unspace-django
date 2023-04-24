@@ -1,0 +1,25 @@
+{% extends 'dev/layout.html' %}
+{% load static %}
+{% block title %}Создание нового проекта - Startups | UnSpace Dev{% endblock %}
+
+    {% block content %}
+        <h1 class="u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">Информация о проекте</h1>
+        <div class="u-container-style u-expanded-width u-group u-hover-feature u-radius-25 u-shape-round u-group-4">
+          <div class="u-container-layout u-container-layout-4">
+                <form style="margin-left: 15px; margin-top: 20px; margin-right: 15px; color: #fff; font-family: 'montserrat' ;" method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.as_p }}<br>
+   
+                     {% if errors %}
+                          {% for error in errors %}
+                                  {{ error }}
+                          {% endfor %}
+                      </ul>
+                  {% endif %}
+
+
+                  <button type="submit" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-1">Опубликовать</button>
+                </form>   
+              </div>
+            </div>
+          {% endblock %}

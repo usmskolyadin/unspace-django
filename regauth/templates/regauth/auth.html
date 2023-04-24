@@ -1,0 +1,53 @@
+{% extends 'regauth/layout.html' %}
+{% load static %}
+{% load socialaccount %}
+{% load account %}
+
+  {% block title %} Авторизация на UnrealSpace {% endblock %} 
+          {% block content %}
+          <div class="u-container-layout u-container-layout-1">
+            <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-1">Авторизация UnSpace</h3>
+            <h3 class="u-align-center-md u-align-center-sm u-align-center-xs u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-2">
+              <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-custom-font u-font-montserrat u-hover-none u-none u-text-body-alt-color u-btn-1" href="{% url 'register' %}">Нету аккаунта? Зарегистрироваться!<span style="font-weight: 400;"></span>
+              </a>
+            </h3>
+            <h3 class="u-custom-font u-font-montserrat u-text u-text-body-alt-color u-text-3">Имя<br>Фамилия&nbsp;
+            </h3>
+            <img class="u-hover-feature u-image u-image-circle u-preserve-proportions u-image-1" alt="" src="{% static 'regauth/img/defaultic.png' %}" data-image-width="900" data-image-height="900"></img>
+            <div class="blur10px filter u-container-style u-group u-hover-feature u-opacity u-opacity-10 u-radius-30 u-shape-round u-group-2">
+              <div class="u-container-layout u-container-layout-2">
+                <style>
+                  .form[input] {
+                    background-color: #000000;
+                  }
+                </style>
+                  <div class="u-expanded-width-sm u-expanded-width-xs u-form u-form-1">
+                    <form class="form" style="margin-left: 15px; margin-top: 20px; margin-right: 15px; font-family: 'montserrat'; color: #fff; border-radius: 4px" method="POST">
+                      {% csrf_token %}<br>
+                      {{form.as_p}}
+               
+                  <br>
+                   <div class="form-check">
+                      <label style="color: #fff; font-family: montserrat;" class="form-check-label" for="flexCheckDefault">
+                       Нажимая кнопку "Войти" вы принимаете <a href="{% url 'privaty-policy' %}"><b>политику конфидициальности</b></a> и <a href="{% url 'user-agreement' %}"><b>условия пользования</b></a><br><hr>Забыли пароль? <a href="{% url 'password-reset' %}">Восстановить пароль</a>
+                      </label>
+                    </div>
+                  <button type="submit" class="u-border-2 u-border-palette-4-dark-1 u-btn u-btn-round u-button-style u-custom-font u-font-montserrat u-hover-feature u-hover-palette-4-dark-1 u-none u-radius-7 u-btn-3">Войти</button>
+                  <div style="align: center">
+                      <div class="form-check"><br>
+                      <label style="color: #fff; font-family: montserrat;" class="form-check-label" for="flexCheckDefault">
+                       Также, вы можете войти через социальные сети:
+                                 <p style="margin-left: 50%;">
+                    <a href="{% provider_login_url 'github' %}"><img src="https://gitlab.com/uploads/-/system/group/avatar/10532272/github.png"  width="45px" height="45px"></a>
+                   
+                    </p>
+                      </label>
+                    </div>
+
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endblock %}
+
